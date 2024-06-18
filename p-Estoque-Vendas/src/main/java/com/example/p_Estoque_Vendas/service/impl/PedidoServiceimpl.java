@@ -100,22 +100,7 @@ public class PedidoServiceimpl implements PedidoService {
                 })
                 .collect(Collectors.toList());
 
-//        return items
-//                .stream()
-//                .map( dto -> {
-//                    Integer idProduto = dto.getProduto();
-//                    Produto produto = produtosRepository
-//                            .findById(idProduto)
-//                            .orElseThrow(
-//                                    () -> new RegraNegocioException
-//                                            ("Código de produto inválido " + idProduto ));
-//
-//                    ItemPedido itemPedido = new ItemPedido();
-//                    itemPedido.setQuantidade(dto.getQuantidade());
-//                    itemPedido.setPedido(pedido);   //Config de RELAÇÃO ENTRE pedido e itemPdeido//
-//                    itemPedido.setProduto(produto); //Config de RELAÇÃO ENTRE produto e itemPdeido//
-//                    return itemPedido;
-//                } ).collect(Collectors.toList());
+
     }
 
 

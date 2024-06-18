@@ -257,14 +257,6 @@ public class ClienteController {
                         (HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 
 
-//        Optional<Cliente> cliente = clientes.findById(id_client);
-//
-//        if (cliente.isPresent()) {
-//            clientes.delete( cliente.get() );
-//            return ResponseEntity.noContent().build();
-//        }
-//
-//        return ResponseEntity.notFound().build();
     }
 
 
@@ -349,15 +341,7 @@ public class ClienteController {
         return clientes.findAll(example);
 
 
-//        String sql = "select * from cliente ";
-//
-//        if (filtro.getNome() != null) {
-//            sql += " where nome = :nome ";
-//        }
-//
-//        if (filtro.getCpf() != null) {
-//            sql += "and cpf= ";
-//        }
+
     }
 
 

@@ -59,7 +59,6 @@ public class Produto /*extends RepresentationModel<Cliente> implements Serializa
     private Integer id;
 
 
-//    @NotNull(message = "Campo preço é obrigatório.")
     @NotNull(message = "{campo.preco.obrigatorio}")
     private BigDecimal preco;
 
@@ -72,101 +71,10 @@ public class Produto /*extends RepresentationModel<Cliente> implements Serializa
     private Instant creationTimeStamp;
 
 
-//    @NotEmpty(message = "Campo Descrição é obrigatório.")
     @NotEmpty(message = "{campo.descricao.obrigatorio}")
     private String descricao;
 
 
 
-
-
-
-//
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public String getDescricao() {
-//        return descricao;
-//    }
-//
-//    public void setDescricao(String descricao) {
-//        this.descricao = descricao;
-//    }
-//
-//    public BigDecimal getPreco() {
-//        return preco;
-//    }
-//
-//    public void setPreco(BigDecimal preco) {
-//        this.preco = preco;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-
-
 }
-
-
-//@Entity e @Table(name = "produto"):
-//
-//  - '@Entity':
-//      Indica que a classe Produto é uma entidade JPA, ou seja, será mapeada para uma
-//      tabela no banco de dados.
-//
-//  - '@Table(name = "produto")':
-//      Especifica o nome da tabela no banco de dados associada a esta entidade. Neste caso,
-//      a tabela se chamará "produto".
-//
-
-//@Id, @GeneratedValue(strategy = GenerationType.IDENTITY) e @Column(name = "id_product"):
-//
-//  - '@Id':
-//  Indica que o campo id é a chave primária da tabela.
-//
-//  - '@GeneratedValue(strategy = GenerationType.IDENTITY)':
-//      Essa estratégia indica que a geração de valores de chave primária deve ser delegada
-//      ao banco de dados. Geralmente, ela é usada quando o banco de dados suporta a
-//      identidade automática, como no caso de colunas autoincrementadas. Quando uma nova
-//      linha é inserida, o banco de dados automaticamente atribui um valor único à
-//      coluna de chave primária.
-//
-//      @Id marca o campo id como a chave primária da entidade, e
-//      @GeneratedValue(strategy = GenerationType.IDENTITY) especifica que os valores para
-//      essa chave primária serão gerados pelo banco de dados usando a identidade
-//      automática.
-//
-//  - '@Column(name = "id_product")':
-//      Especifica o nome da coluna na tabela do banco de dados que será mapeada para o
-//      atributo id na classe Produto.
-//
-
-//@Column(name = "preco_unitario"):
-//
-//  - '@Column(name = "preco_unitario")':
-//      Mapeia o atributo preco para a coluna preco_unitario no banco de dados. Este atributo
-//      representa o preço unitário do produto e é do tipo BigDecimal, que é comumente usado
-//      para representar valores monetários de alta precisão.
-//
-
-//@Column(name = "descricao"):
-//
-//  - '@Column(name = "descricao")':
-//      Mapeia o atributo descricao para a coluna descricao no banco de dados. Este atributo
-//      representa a descrição do produto, que é uma String contendo informações sobre o
-//      produto.
-//
-
-//Métodos Getters e Setters:
-//
-//  A classe possui métodos getters e setters para acessar e modificar os atributos id,
-//  preco e descricao.
-//
-//  Essa classe representa um produto em um sistema de vendas, mantendo informações como
-//  id, preço unitário e descrição. O uso das anotações JPA facilita o mapeamento da classe
-//  para uma tabela no banco de dados e o relacionamento com outras entidades, como visto
-//  nos exemplos anteriores.
-
 

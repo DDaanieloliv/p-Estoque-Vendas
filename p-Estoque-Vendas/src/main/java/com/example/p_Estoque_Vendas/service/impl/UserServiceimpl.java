@@ -29,48 +29,6 @@ public class UserServiceimpl implements UserService {
 
     @Override
     public void optionCreation(CreateUserDTO dto, Jwt jwt) {
-        // Verifica se o token possui o escopo 'admin'
-//        if (jwt.getClaimAsStringList("scope").contains("admin")) {
-//
-//            if (dto.getRole_number() == 1) {
-//
-//                var roleAdmin = roleRepository.findByName(Role.Values.ADMIN.name());
-//
-//                //var userAdmin = userRepository.findByUsername("admin");
-//
-//                //userAdmin.ifPresentOrElse(
-//                //Essa parte deve ser alterada pois nao permitirá crir mais um admin.
-//                //      (user) -> {
-//                //            System.out.println("adimn ja existe");
-//                //        },
-//                //        () -> {
-//                            var user = new User();
-//                            user.setUsername(dto.getUsername());
-//                            user.setPassword(passwordEncoder.encode(dto.getPassword()));
-//                            userRepository.save(user);
-//                            user.setRoles(Set.of(roleAdmin));
-//
-//                        //}
-//                //);
-//
-//
-//            } else {
-//
-//                var basicRole = roleRepository.findByName(Role.Values.BASIC.name());
-//
-//                var userFromDb = userRepository.findByUsername(dto.getUsername());
-//                if (userFromDb.isPresent()) {
-//                    throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY);
-//                }
-//
-//                var user = new User();
-//                user.setUsername(dto.getUsername());
-//                user.setPassword(passwordEncoder.encode(dto.getPassword()));
-//                user.setRoles(Set.of(basicRole));
-//
-//                userRepository.save(user);
-//
-//            }
 
         // Verifica se o token possui o escopo 'admin'
         if (jwt.getClaimAsStringList("scope").contains("admin")) {

@@ -33,11 +33,6 @@ public class SecurityConfig  {
 
     @Value("${jwt.private_key.pem}")
     private RSAPrivateKey privateKey;
-//    @Value("${jwt.public_key.pem}")
-//    private RSAPublicKey publicKey;
-//
-//    @Value("${jwt.private_key.pem}")
-//    private RSAPrivateKey privateKey;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
