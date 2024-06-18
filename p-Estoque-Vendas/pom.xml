@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.2.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>p-Estoque-Vendas</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<!-- Para Deploy -->
+	<!-- <packaging>${project.packaging}</packaging>   -->
+	<name>p-Estoque-Vendas</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+
+
+
+
+	<!-- <packaging>war</packaging> -->
+
+	<!-- Para gerar arquivo JAR (sera usado no ambiente de desenvolvimento na
+         empresa) vc deve entrar Windows powerShell dar um 'cd' ate o diretorio
+         raiz e digitar o comando 'mvn clean package' e voce poderar conferir na
+         pasta target que foi criado um arquivo '.jar'.
+
+         E para rodarmos a aplicação JAR, depois de ter criado o arquivo .jar
+         voce ira entrar dentro da pasta target assim 'cd target' e executar o
+         comando para rodar o JAR 'java -jar .\[nome do arquivo .jar]' e entao
+         a aplicação será rodada.
+
+         Para fazer o build do arquivo WAR (sera usado no ambiente de produção na
+         empresa) voce precisará adicionar essa linha de codigo:
+
+         <packaging>war</packaging>
+
+         E adicionar essa dependencia:
+
+         <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <scope>provided</scope>
+         </dependency>
+         {SERVIDOR EMBARCADO}
+
+         E depois ir no arquivo de run do seu projeto e dar um:
+
+         extends SpringBootServletInitializer
+
+         Assim ela vira uma aplçicação Web, ela
+         deixa de ser uma applicação StandAlone que ajente gera um JAR para ser uma
+         applicação Web que vai gerar um web WAR.
+
+         Agora voce irá voltar para a pasta raiz dando um 'cd ..' e novamente executar o
+         comando 'mvn clean package', apos executar o comando ira ser gerado uma pasta que
+         contera uma pasta WEB-INF, a pasta que contem essa pasta WEB-INF ira ser
+         empacotada e transformada no arquivo '.war' e apos a build desse arquivo terminar
+         o arquivo .war estará gerado, pronto para fazer o deploy dentro de algum servidor
+         de aplicaçoes JAVA ou um ServletContainer.
+
+         "Qaundo voce está desenvolvendo o projeto voce roda o metodo main como se fosse
+          um JAR e quando é em produção voce gera a build de produção e voce precisa
+          gerar um arquivo WAR"
+
+          Entao na pratica voce deve vir aqui no arquivo pom altrar isso:
+
+          <packaging>war</packaging>
+
+          Para isso:
+
+          <packaging>jar</packaging>
+
+          E Comentar essa dependencia :
+
+          <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+                <scope>provided</scope>
+         </dependency>
+
+         Para rodar localmente. -->
+
+
+	<!-- Ou ao invez de fazer tudo isso acima: Voce pode optar por usar Profiles
+         como voce pode ver abaixo.
+
+         E ao tentar rodar o Projeto no Windows PowerShell defina o Profile que
+         voce deseja no caso 'desenvolvimento' ou 'producao' dessa maneira a seguir:
+
+         mvn clean package -P [nome do profile]
+
+         Feito isso dependendo do profile que voce escolher voce estará
+         gerando um arquivo WAR ou JAR na pasta target do seu projeto.
+
+         [ Fazendo esse uso do profile voce evita de estar sempre alterando as ]
+         [ dependencias e configuraçoes dispostas aqui no arquivo pom.xml ] -->
+
+
+	<!-- profiles -->
+	<!-- <profiles>
+        <profile>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <id>desenvolvimento</id>
+            <properties>
+                <project.packaging>jar</project.packaging>
+                <tomcat.scope>compile</tomcat.scope>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>producao</id>
+            <properties>
+                <project.packaging>war</project.packaging>
+                <tomcat.scope>provided</tomcat.scope>
+            </properties>
+        </profile>
+    </profiles>
+     -->
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.2.11</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>-->
+
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+
+		<!--<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency> -->
+	</dependencies>
+
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
