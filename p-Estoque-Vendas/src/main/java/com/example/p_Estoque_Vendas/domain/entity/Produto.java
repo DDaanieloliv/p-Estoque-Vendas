@@ -1,6 +1,5 @@
 package com.example.p_Estoque_Vendas.domain.entity;
 
-
 /*
 Essas anotações estão associadas ao projeto Lombok, que é uma biblioteca do Java
 utilizada para reduzir a verbosidade do código, eliminando a necessidade de escrever
@@ -27,7 +26,6 @@ determinados métodos e construtores padrão. Vamos entender cada uma delas:
     os métodos getter e setter para todos os campos da classe.
 */
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -37,10 +35,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.hateoas.RepresentationModel;
 
-
 import java.math.BigDecimal;
 import java.time.Instant;
-
 
 //@Getter
 //@Setter
@@ -49,32 +45,25 @@ import java.time.Instant;
 @Data
 @Entity
 @Table(name = "produto")
-public class Produto /*extends RepresentationModel<Cliente> implements Serializable */{
+public class Produto /* extends RepresentationModel<Cliente> implements Serializable */ {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id_product")
+  private Integer id;
 
+  @NotNull(message = "{campo.preco.obrigatorio}")
+  private BigDecimal preco;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_product")
-    private Integer id;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
+  @CreationTimestamp
+  @Column(name = "inserido")
+  private Instant creationTimeStamp;
 
-    @NotNull(message = "{campo.preco.obrigatorio}")
-    private BigDecimal preco;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    @CreationTimestamp
-    @Column(name = "inserido")
-    private Instant creationTimeStamp;
-
-
-    @NotEmpty(message = "{campo.descricao.obrigatorio}")
-    private String descricao;
-
-
+  @NotEmpty(message = "{campo.descricao.obrigatorio}")
+  private String descricao;
 
 }
-

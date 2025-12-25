@@ -1,6 +1,5 @@
 package com.example.p_Estoque_Vendas.domain.entity;
 
-
 /*
 Essas anotações estão associadas ao projeto Lombok, que é uma biblioteca do Java
 utilizada para reduzir a verbosidade do código, eliminando a necessidade de escrever
@@ -45,74 +44,77 @@ import java.util.Set;
 @AllArgsConstructor
 @Data
 @Entity
-@Table( name = "cliente" )
+@Table(name = "cliente")
 public class Cliente extends RepresentationModel<Cliente> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id //PRIMARY KEY//
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //AUTO_INCREMENT//
-    @Column(name = "id_client")    //MAPPING PARA A COLUNA "id_client"//
-    private Integer id;
+  @Id // PRIMARY KEY//
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO_INCREMENT//
+  @Column(name = "id_client") // MAPPING PARA A COLUNA "id_client"//
+  private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
-    @CreationTimestamp
-    @Column(name = "instanciado")
-    private Instant creationTimeStamp;
+  @CreationTimestamp
+  @Column(name = "instanciado")
+  private Instant creationTimeStamp;
 
-    @Column(name = "cpf", length = 11)
-//    @NotEmpty(message = "Campo CPF é obrigatório.")
-    @NotEmpty(message = "{campo.cpf.obrigatorio}")
-    @CPF(message = "{campo.cpf.invalido}")
-    private String cpf;
+  @Column(name = "cpf", length = 11)
+  // @NotEmpty(message = "Campo CPF é obrigatório.")
+  @NotEmpty(message = "{campo.cpf.obrigatorio}")
+  @CPF(message = "{campo.cpf.invalido}")
+  private String cpf;
 
+  @Column(name = "nome", length = 100)
+  // @NotEmpty(message = "Campo nome é obrigatório.")
+  @NotEmpty(message = "{campo.nome.obrigatorio}")
+  private String nome;
 
-    @Column(name = "nome", length = 100)
-//    @NotEmpty(message = "Campo nome é obrigatório.")
-    @NotEmpty(message = "{campo.nome.obrigatorio}")
-    private String nome;
+  @JsonIgnore // NÃO PERMITIRA APARECER O JSON VAZIO DA ENTIDADE PEDIDO//
+  @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY) // EAGER
+  private Set<Pedido> pedidos;
+  // indica uma relação entre entidades, mas não cria uma coluna diretamente na
+  // tabela
+  // da entidade onde ela está sendo usada. No exemplo que você forneceu.
+  // A coluna que estabelece a relação (a chave estrangeira)(relação entre
+  // 'Cliente' e
+  // 'Pedido') será criada na tabela associada (Pedido). Portanto, a tabela Pedido
+  // terá
+  // uma coluna que referencia a tabela Cliente. Não haverá uma coluna diretamente
+  // na
+  // tabela Cliente para representar essa relação.
 
-    @JsonIgnore //NÃO PERMITIRA APARECER O JSON VAZIO DA ENTIDADE PEDIDO//
-    @OneToMany( mappedBy = "cliente", fetch = FetchType.LAZY) //EAGER
-    private Set<Pedido> pedidos;
-    // indica uma relação entre entidades, mas não cria uma coluna diretamente na tabela
-    // da entidade onde ela está sendo usada. No exemplo que você forneceu.
-    // A coluna que estabelece a relação (a chave estrangeira)(relação entre 'Cliente' e
-    // 'Pedido') será criada na tabela associada (Pedido). Portanto, a tabela Pedido terá
-    // uma coluna que referencia a tabela Cliente. Não haverá uma coluna diretamente na
-    // tabela Cliente para representar essa relação.
+  // public Set<Pedido> getPedidos(){
+  // return pedidos;
+  // }
+  //
+  // public void setPedidos(Set<Pedido> pedidos) {
+  // this.pedidos = pedidos;
+  // }
 
-//    public Set<Pedido> getPedidos(){
-//        return pedidos;
-//    }
-//
-//    public void setPedidos(Set<Pedido> pedidos) {
-//        this.pedidos = pedidos;
-//    }
+  // * Set em Java é uma coleção que não permite elementos duplicados. Ele é mais
+  // adequado quando você precisa garantir que cada elemento seja único na
+  // coleção.
+  // No exemplo que você forneceu, private Set<Pedido> pedidos;, está sendo
+  // utilizado
+  // um Set para representar uma coleção de objetos do tipo Pedido. Isso significa
+  // que, para uma instância dessa classe, os objetos Pedido associados a ela
+  // devem
+  // ser únicos, e não haverá repetições na coleção.
 
+  // public Cliente() {
+  // }
 
+  public Cliente(Integer id, String nome) {
+    this.id = id;
+    this.nome = nome;
+  }
 
-    // * Set em Java é uma coleção que não permite elementos duplicados. Ele é mais
-    // adequado quando você precisa garantir que cada elemento seja único na coleção.
-    // No exemplo que você forneceu, private Set<Pedido> pedidos;, está sendo utilizado
-    // um Set para representar uma coleção de objetos do tipo Pedido. Isso significa
-    // que, para uma instância dessa classe, os objetos Pedido associados a ela devem
-    // ser únicos, e não haverá repetições na coleção.
-
-//    public Cliente() {
-//    }
-
-    public Cliente(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-
-    public Cliente(String nome) {
-        this.nome = nome;
-    }
+  public Cliente(String nome) {
+    this.nome = nome;
+  }
 
 }
-

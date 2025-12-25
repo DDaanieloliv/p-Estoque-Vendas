@@ -47,62 +47,73 @@ import java.util.List;
 @Table(name = "pedido")
 public class Pedido extends RepresentationModel<Cliente> implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_pedido")
-    private Integer id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "id_pedido")
+  private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
-    @CreationTimestamp
-    @Column(name = "efetuado")
-    private Instant creationTimeStamp;
+  @CreationTimestamp
+  @Column(name = "efetuado")
+  private Instant creationTimeStamp;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
-//    @Column(name = "cliente_id")
-    private Cliente cliente ;
-    // @JoinColum - Chave estrangeira da tabela 'Cliente'
+  @ManyToOne
+  @JoinColumn(name = "cliente_id")
+  // @Column(name = "cliente_id")
+  private Cliente cliente;
+  // @JoinColum - Chave estrangeira da tabela 'Cliente'
 
-//  Quando você define um relacionamento @ManyToOne, a anotação @JoinColumn é geralmente
-//  suficiente para mapear a coluna de chave estrangeira no lado "muitos" desse
-//  relacionamento. A anotação @Column(name = "cliente_id") pode ser redundante e causar
-//  confusão no Hibernate/JPA.
+  // Quando você define um relacionamento @ManyToOne, a anotação @JoinColumn é
+  // geralmente
+  // suficiente para mapear a coluna de chave estrangeira no lado "muitos" desse
+  // relacionamento. A anotação @Column(name = "cliente_id") pode ser redundante e
+  // causar
+  // confusão no Hibernate/JPA.
 
-    @Column(name = "data_pedido")
-    private LocalDate data_pedido;
+  @Column(name = "data_pedido")
+  private LocalDate data_pedido;
 
-    @Column(name = "total", precision = 20, scale = 2)
-    private BigDecimal total;
+  @Column(name = "total", precision = 20, scale = 2)
+  private BigDecimal total;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private StatusPedido status;
+  @Enumerated(EnumType.STRING)
+  @Column(name = "status")
+  private StatusPedido status;
 
-    // @Enumerated(EnumType.STRING): Essa anotação é usada para mapear uma enumeração (enum)
-    // em um banco de dados relacional. Ela especifica como os valores da enumeração devem
-    // ser armazenados no banco de dados. No caso de EnumType.STRING, os valores da enumeração
-    // serão armazenados como strings no banco de dados.
-    //
-    // @Column(name = "status"): Essa anotação é usada para personalizar as propriedades da
-    // coluna do banco de dados associada a um campo da entidade. Neste caso, a propriedade
-    // status será mapeada para uma coluna chamada "status". O parâmetro name especifica o
-    // nome da coluna no banco de dados.
-    //
-    // Então, a combinação dessas anotações está indicando que a propriedade status de uma
-    // entidade será mapeada para uma coluna chamada "status" no banco de dados, e os
-    // valores dessa propriedade (que é uma enumeração) serão armazenados como strings.
-    // Isso é útil quando você tem uma enumeração em Java representando diferentes estados
-    // (como status de um pedido) e deseja persistir esses estados no banco de dados de uma
-    // forma legível e compreensível.
+  // @Enumerated(EnumType.STRING): Essa anotação é usada para mapear uma
+  // enumeração (enum)
+  // em um banco de dados relacional. Ela especifica como os valores da enumeração
+  // devem
+  // ser armazenados no banco de dados. No caso de EnumType.STRING, os valores da
+  // enumeração
+  // serão armazenados como strings no banco de dados.
+  //
+  // @Column(name = "status"): Essa anotação é usada para personalizar as
+  // propriedades da
+  // coluna do banco de dados associada a um campo da entidade. Neste caso, a
+  // propriedade
+  // status será mapeada para uma coluna chamada "status". O parâmetro name
+  // especifica o
+  // nome da coluna no banco de dados.
+  //
+  // Então, a combinação dessas anotações está indicando que a propriedade status
+  // de uma
+  // entidade será mapeada para uma coluna chamada "status" no banco de dados, e
+  // os
+  // valores dessa propriedade (que é uma enumeração) serão armazenados como
+  // strings.
+  // Isso é útil quando você tem uma enumeração em Java representando diferentes
+  // estados
+  // (como status de um pedido) e deseja persistir esses estados no banco de dados
+  // de uma
+  // forma legível e compreensível.
 
-    @OneToMany( mappedBy = "pedido")
-    private List<ItemPedido> itens;
-
+  @OneToMany(mappedBy = "pedido")
+  private List<ItemPedido> itens;
 
 }
-
